@@ -131,7 +131,7 @@ io.on('connection', (socket) => {
     const leaver = by === 'doctor' ? 'doctor' : 'user';
     const partner = leaver === 'doctor' ? 'user' : 'doctor';
     // Notify partner that counterpart left
-    io.to(`chat:${chatId}`).emit('system:partner_left', { chatId, who: leaver, message: `${leaver} left the chat. ${partner} may now end chat.` });
+    io.to(`chat:${chatId}`).emit('system:partner_left', { chatId, who: leaver, message: `Chat Ended. You may now leave this chat.` });
     // If both already left, clean up
     if (leaver === 'doctor') mapping.doctorSocketId = undefined; else mapping.userSocketId = undefined;
     const bothGone = !mapping.userSocketId && !mapping.doctorSocketId;
