@@ -12,6 +12,18 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
+    {
+      name: "create-redirects",
+      closeBundle() {
+        try {
+          mkdirSync("dist", { recursive: true })
+          writeFileSync("dist/_redirects", "/*    /index.html   200")
+          console.log("✅ _redirects file created in dist/")
+        } catch (error) {
+          console.error("❌ Error creating _redirects:", error)
+        }
+      },
+    },
   ],
   resolve: {
     alias: {
